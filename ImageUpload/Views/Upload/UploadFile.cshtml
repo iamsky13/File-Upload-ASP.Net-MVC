@@ -3,20 +3,28 @@
     ViewBag.Title = "UploadFile";
 }
 
-<h2>UploadFile</h2>
-
-@using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-
-    <div>
-        @Html.TextBox("file", "", new { type = "file" }) <br />
-
-        <input type="submit" value="Upload" />
-
-        @ViewBag.Message
-
-    </div>
-
-
+<h2>UploadFile</h2>  
+   
+@using(Html.BeginForm("UploadFile","Upload", FormMethod.Post, new { enctype="multipart/form-data"}))  
+{  
+      
+    <div>  
+        @Html.TextBox("file", "", new {  type= "file", onchange = "loadFile(event)" }) <br />  
+   
+        <input type="submit" value="Upload" />  
+   
+        @ViewBag.Message  
+   
+    </div>  
+      
+      
 }
+
+    <script>
+        var loadFile = function (event) {
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+
 
